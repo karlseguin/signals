@@ -45,6 +45,8 @@ type Handler func() bool
 func Handle(signal os.Signal, handler Handler) {
 	channel := make(chan os.Signal, 1)
 	ossignal.Notify(channel, signal)
+	defer ossignal.Stop(c)
+
 	for {
 		<-channel
 		if handler() == false {

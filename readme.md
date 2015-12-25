@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-  signals.Handle(signals.SIGUSR2, reload)
+  go signals.Handle(signals.SIGUSR2, reload)
   RunServer()
 }
 
